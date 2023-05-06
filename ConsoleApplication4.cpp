@@ -1,4 +1,4 @@
-﻿
+
 #include <locale.h>
 #include <iostream>
 #include <Windows.h>
@@ -9,40 +9,66 @@ int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	char Str[80];
+
+		char Str[80];
+		cout << "Введите строку:" << endl;
+		cin.getline(Str, 80);
+		int len = 0;
+		while (Str[len] != '\0') {
+			len++;
+		}
+		int firstlen = 0;
+		while (Str[firstlen] != ' ') {
+			firstlen++;
+		}
+		cout << "Колличество символов в первом слове: " << firstlen << endl << "Слова, в которых меньше символов, чем в первом: ";
+		int counter, wordlen = 0, lesscharnum = 0;
+		for (counter = firstlen; counter <= len; counter++) {
+			int old_c = counter;
+			wordlen = 0;
+			while (Str[counter] != ' ' && Str[counter] != '\0') {
+				wordlen++;
+				counter++;
+			}
+
+			if (wordlen < firstlen && wordlen != 0) {
+				while (Str[old_c] != ' ' && Str[old_c] != '\0') {
+					cout << Str[old_c];
+					old_c++;
+				}
+				cout << " ";
+				lesscharnum++;
+			}
+		}
+		cout << endl << "Колличество слов, в которых меньше символов, чем в первом: " << lesscharnum <<endl; 
+		  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  char Str1[80];
 	cout << "Введите строку:" << endl;
 	cin.getline(Str, 80);
-	int b = 0;
-	while (Str[b] != '\0') {
-		b++;
+	int len1 = strlen(Str);
+	int firstlen1 = 0;
+	while (isalnum(Str[firstlen1])){
+		firstlen1++; 
 	}
-	int i = 0;
-	while (Str[i] != ' ') {
-		i++;
-	}
-	cout << "Колличество символов в первом слове: " << i << endl <<"Слова, в которых меньше символов, чем в первом: ";
-	int c, f=0, d=0;
-	for ( c = i ; c <= b; c++) {
-		int old_c = c;
-		while (Str[c] != ' ') {
-		f++;
-		 c++;
+	cout <<"Колличество символо в первом слове: " << firstlen1 <<endl <<"Слова, в которых меньше символов, чем в первом: ";
+	int counter1, wordlen1 = 0, lesscharnum1 = 0;
+	for (counter1 = firstlen1; counter1 <= len1; counter1++) {
+		int old_c1 = counter1;
+		wordlen1 = 0;
+		while (isalnum(Str[counter1])){
+			wordlen1++;
+			counter1++;
 		}
-		if (f < i) {
-			while (Str[old_c] != ' ') {
-				cout << Str[old_c];
-				old_c++;
+		if(wordlen1 < firstlen1 && wordlen1 != 0) {
+			while (isalnum(Str[old_c1])) {
+				cout << Str[old_c1];
+				old_c1++;
 			}
 			cout << " ";
-			d++;
+			lesscharnum1++;
 		}
-		f = 0;
 	}
-	cout <<endl <<"Колличество слов, в которых меньше символов, чем в первом: " << d;
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
+	cout << endl << "Колличество слов, в которых меньше символов, чем в первом: " << lesscharnum1 << endl;
 }
 
 
